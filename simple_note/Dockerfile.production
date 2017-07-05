@@ -1,0 +1,18 @@
+FROM ruby:2.4.1
+MAINTAINER mmts1007
+
+ENV APP_ROOT=/usr/src/app \
+    RAILS_ENV=production \
+    RAILS_LOG_TO_STDOUT=true
+
+WORKDIR $APP_ROOT
+EXPOSE 3000
+
+RUN apt-get update && apt-get install -y \
+      nodejs \
+      mysql-client
+
+COPY . $APP_ROOT
+RUN bundle install
+
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
