@@ -12,9 +12,11 @@ services:
       dockerfile: Dockerfile.development
     volumes:
       - .:/usr/src/app
+      - gem-store:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
       - db
 volumes:
   mysql-data:
+  gem-store:
